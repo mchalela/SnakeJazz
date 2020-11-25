@@ -3,7 +3,7 @@ include LICENSE
 
 recursive-include snakejazz *.md
 recursive-include snakejazz *.txt
-recursive-include snakejazz *.wav
+recursive-include snakejazz/sounds/rhodesmas *.wav
 
 exclude tox.ini
 exclude pyproject.toml
