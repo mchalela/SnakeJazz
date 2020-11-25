@@ -15,7 +15,6 @@ def function_setup_teardown():
     multiprocessing = MagicMock()
     multiprocessing.Process = MagicMock()
     mock_modules = {
-        "multiprocessing": multiprocessing,
         "multiprocessing.Process": multiprocessing.Process
         }
 

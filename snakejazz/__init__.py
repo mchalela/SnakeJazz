@@ -10,4 +10,6 @@ __version__ = "0.0.1"
 
 from . import sounds
 
-from .snakejazz import * #noqa
+from .snakejazz import decorator, play_sound, _parse_param
+from .snakejazz import DEFAULT_START, DEFAULT_FINISH, DEFAULT_ERROR
+

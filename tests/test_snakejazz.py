@@ -29,7 +29,7 @@ def default_start():
 def default_finish():
     return snakejazz.sounds.RHODESMAS["disconnected-01.wav"]
 
-'''
+
 def test_play_sound(default_finish):
     
     with patch('pygame.mixer') as mock_mixer:
@@ -38,13 +38,6 @@ def test_play_sound(default_finish):
     
     mock_mixer.init.assert_called()
 
-def test_decorator(method, default_start, default_finish, default_error):
-    
-    proc = MagicMock()
-
-    with patch('multiprocessing.Process', autospec=True) as mock_Process:
-        method_dec = snakejazz.decorator(method)
-        method_dec()
-    
-    mock_Process.assert_called_with(target=method)
-'''
+def test_parse_param():
+    result = snakejazz._parse_param(True, 'foo')
+    assert result=='foo'
