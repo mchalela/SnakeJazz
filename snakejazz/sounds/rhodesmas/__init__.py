@@ -14,6 +14,6 @@ PATH = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 PACK_NAME = "rhodesmas"
 
 RHODESMAS = {}
-for name in os.listdir(PACK_NAME):
+for name in os.listdir(PATH / PACK_NAME):
     if name.endswith(".wav"):
         RHODESMAS[name] = str(PATH / name)
