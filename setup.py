@@ -81,7 +81,10 @@ def do_setup():
             "Topic :: Multimedia :: Sound/Audio",
             "Topic :: Multimedia :: Video",
         ],
-        packages=["snakejazz", "snakejazz.sounds"],
+        packages=[
+            "snakejazz",
+            "snakejazz.sounds",
+            "snakejazz.sounds.rhodesmas"],
         py_modules=["ez_setup"],
         install_requires=REQUIREMENTS,
     )

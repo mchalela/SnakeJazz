@@ -5,14 +5,16 @@
 import os
 import pathlib
 
+#from . import rhodesmas
+from .rhodesmas import RHODESMAS
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # PATHS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+'''
 PATH = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 
 AVAILABLE_PACKS = ["rhodesmas"]
-
 
 for name in AVAILABLE_PACKS:
     print(name)
@@ -30,5 +32,5 @@ for pack in PACK_PATHS:
         print(name)
         if name.endswith(".wav"):
             RHODESMAS[name] = str(PATH / pack / name)
-
+'''
 print(RHODESMAS)
