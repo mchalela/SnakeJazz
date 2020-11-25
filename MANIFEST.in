@@ -1,0 +1,9 @@
+  include *.in
+  include LICENSE
+  include tox.ini
+
+  recursive-include snakejazz *.md
+  recursive-include snakejazz *.txt
+  recursive-include snakejazz *.wav
+
+  recursive-include tests *.py

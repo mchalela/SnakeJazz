@@ -1,3 +1,0 @@
-recursive-include snakejazz *.wav
-recursive-include snakejazz *.txt
-recursive-include snakejazz *.md
