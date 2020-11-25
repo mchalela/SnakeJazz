@@ -1,9 +1,11 @@
-  include *.in
-  include LICENSE
-  include tox.ini
+include README.md
+include LICENSE
 
-  recursive-include snakejazz *.md
-  recursive-include snakejazz *.txt
-  recursive-include snakejazz *.wav
+recursive-include snakejazz *.md
+recursive-include snakejazz *.txt
+recursive-include snakejazz/sounds/rhodesmas *.wav
 
-  recursive-include tests *.py
+exclude tox.ini
+exclude pyproject.toml
+recursive-exclude tests *
+recursive-exclude docs *
