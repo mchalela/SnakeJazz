@@ -2,13 +2,12 @@
 # IMPORTS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+import multiprocessing as mp
 import os
 from functools import partial, wraps
-import multiprocessing as mp
-#from multiprocessing import Process
 
 # Hide print message at import
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import pygame
 
 from . import sounds
@@ -29,6 +28,10 @@ DEFAULT_ERROR = sounds.RHODESMAS["failure-01.wav"]
 
 
 def _parse_param(param, default):
+    
+    if param is not None and not isinstance(param, (bool, str)):
+        raise ValueError(f"Invalid parameter input {param}.")
+
     if param is None or param is False:
         return False
     elif param is True:
@@ -62,6 +65,37 @@ def play_sound(sound_path):
     pygame.mixer.music.unload()
     return
 
+'''
+def play_url(sound_path="https://www.youtube.com/watch?v=ahgcD1xjRiQ"):
+    """Reproduce the sound.
+
+    The library PyGame is used to reproduce sounds.
+
+    Parameters
+    ----------
+    sound_path: string, path
+        Path to the sound file.
+    """
+
+    import urllib, time
+    from pygame import mixer
+    from io import BytesIO
+
+    #Read the sound from the url
+    f = urllib.request.urlopen(sound_path).read()
+
+    #Convert to a file
+    snd = BytesIO(f)
+
+    #Convert to a sound!
+    mixer.init()
+    sound = mixer.Sound(file=snd.getbuffer())
+    sound.play()
+
+    #Pause while you listen to a sound loaded from an online database!
+    time.sleep(3)
+    return
+'''
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # DECORATOR
@@ -153,6 +187,7 @@ def decorator(
         )
     else:
         return wrapper
+
 
 # shortcut
 zzz = decorator

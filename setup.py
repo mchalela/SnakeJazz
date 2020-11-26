@@ -84,7 +84,8 @@ def do_setup():
         packages=[
             "snakejazz",
             "snakejazz.sounds",
-            "snakejazz.sounds.rhodesmas"],
+            "snakejazz.sounds.rhodesmas",
+        ],
         include_package_data=True,
         py_modules=["ez_setup"],
         install_requires=REQUIREMENTS,

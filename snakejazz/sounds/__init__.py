@@ -2,7 +2,4 @@
 # IMPORTS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-import os
-import pathlib
-
-from .rhodesmas import RHODESMAS
+from .rhodesmas import RHODESMAS  # noqa
