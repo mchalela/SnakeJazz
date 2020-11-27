@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # This file is part of the
-#   GriSPy Project (https://github.com/mchalela/GriSPy).
+#   SnakeJazz Project (https://github.com/mchalela/SnakeJazz/).
 # Copyright (c) 2020, Martin Chalela
 # License: MIT
-#   Full Text: https://github.com/mchalela/GriSPy/blob/master/LICENSE
+#   Full Text: https://github.com/mchalela/SnakeJazz/blob/master/LICENSE
 
 
 # =============================================================================
@@ -34,7 +34,7 @@ from setuptools import setup
 # CONSTANTS
 # =============================================================================
 
-REQUIREMENTS = ["pygame"]
+REQUIREMENTS = ["pygame", "youtube_dl", "validator_collection"]
 
 PATH = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 

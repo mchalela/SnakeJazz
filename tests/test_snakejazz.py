@@ -1,11 +1,22 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# This file is part of the
+#   SnakeJazz Project (https://github.com/mchalela/SnakeJazz/).
+# Copyright (c) 2020, Martin Chalela
+# License: MIT
+#   Full Text: https://github.com/mchalela/SnakeJazz/blob/master/LICENSE
+
 import os
 
 from unittest.mock import MagicMock, patch
 
 import pytest
 
-import snakejazz
+import youtube_dl
 
+import snakejazz
+from snakejazz import SnakeNotFoundError, URLError
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Fixtures
@@ -36,6 +47,63 @@ def default_start():
 @pytest.fixture
 def default_finish():
     return snakejazz.sounds.RHODESMAS["disconnected-01.wav"]
+
+@pytest.fixture
+def default_url():
+    return snakejazz.sounds.RICK_AND_MORTY
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test _parse_param
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def test_parse_param_True():
+    result = snakejazz.snakejazz._parse_param(True, "foo")
+    assert result == "foo"
+
+def test_parse_param_False():
+    result = snakejazz.snakejazz._parse_param(False, "foo")
+    assert result is False
+
+def test_parse_param_None():
+    result = snakejazz.snakejazz._parse_param(None, "foo")
+    assert result is False
+
+def test_parse_param_invalid_type():
+    with pytest.raises(ValueError):
+        result = snakejazz.snakejazz._parse_param(42, "foo")
+
+def test_parse_param_invalid_file():
+    valid_path = snakejazz.DEFAULT_START
+    invalid_path = valid_path.replace('.wav', '.mp3')
+    with pytest.raises(SnakeNotFoundError):
+        result = snakejazz.snakejazz._parse_param(invalid_path, valid_path)
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test _parse_url
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def test_parse_url_True():
+    result = snakejazz.snakejazz._parse_url(True, "foo")
+    assert result == "foo"
+
+def test_parse_url_False():
+    result = snakejazz.snakejazz._parse_url(False, "foo")
+    assert result is False
+
+def test_parse_url_None():
+    result = snakejazz.snakejazz._parse_url(None, "foo")
+    assert result is False
+
+def test_parse_url_invalid_type():
+    with pytest.raises(ValueError):
+        result = snakejazz.snakejazz._parse_url(42, "foo")
+
+def test_parse_url_invalid_file():
+    valid_url = snakejazz.DEFAULT_URL_START
+    invalid_url = valid_url.replace('://', ':/')
+    with pytest.raises(URLError):
+        result = snakejazz.snakejazz._parse_url(invalid_url, valid_url)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test play_sound
@@ -70,30 +138,20 @@ def test_mixer_play(default_finish):
     mock_mixer.music.unload.assert_called_once()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Test _parse_param
+# Test get_sound
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-def test_parse_param_True():
-    result = snakejazz._parse_param(True, "foo")
-    assert result == "foo"
+@patch("youtube_dl.YoutubeDL.download")
+def test_get_sound_defaults(mock_download):
+    sound_path = snakejazz.get_sound(use_cache=False)
+    mock_download.assert_called_once()
 
-def test_parse_param_False():
-    result = snakejazz._parse_param(False, "foo")
-    assert result is False
-
-def test_parse_param_None():
-    result = snakejazz._parse_param(None, "foo")
-    assert result is False
-
-def test_parse_param_invalid_type():
-    with pytest.raises(ValueError):
-        result = snakejazz._parse_param(42, "foo")
-
-def test_parse_param_invalid_file():
-    valid_path = snakejazz.DEFAULT_START
-    invalid_path = valid_path.replace('.wav', '.mp3')
-    with pytest.raises(FileNotFoundError):
-        result = snakejazz._parse_param(invalid_path, valid_path)
+@patch("youtube_dl.YoutubeDL.download")
+def test_get_sound_bad_url(mock_download, default_url):
+    bad_url = default_url[:-5]
+    with pytest.raises(SnakeNotFoundError):
+        sound_path = snakejazz.get_sound(yt_url=bad_url)
+    mock_download.assert_called()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test default files exist
@@ -107,3 +165,4 @@ def test_defaults_exist():
 def test_RHODESMAS():
     for name, path in snakejazz.sounds.RHODESMAS.items():
         assert os.path.isfile(path)
+
