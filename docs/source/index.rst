@@ -6,13 +6,26 @@
 SnakeJazz's documentation!
 =====================================
 
+.. image:: https://badge.fury.io/py/snakejazz.svg
+   :target: https://badge.fury.io/py/snakejazz
+   :alt: PyPI Version
+
 .. image:: https://readthedocs.org/projects/snakejazz/badge/?version=latest
    :target: https://snakejazz.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
 .. image:: https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master
    :target: https://travis-ci.com/mchalela/SnakeJazz
+   :alt: Build Status
 
+.. image:: https://img.shields.io/badge/License-MIT-blue.svg
+   :target: https://tldrlegal.com/license/mit-license
+   :alt: License MIT
+
+.. image:: https://img.shields.io/badge/Python-3.6+-blue.svg
+   :target: https://www.python.org/downloads/release/python-370/
+   :alt: Python 3.6+
+   
 **SnakeJazz** provides decorators to let you listen to the running status of your Python functions. Most definitly inspired by Rick and Morty ;)
 
 These are the decorators:
