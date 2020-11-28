@@ -119,7 +119,9 @@ def play_sound(sound_path, loops=0):
         Path to the sound file.
     loops: int
         Number of times the sound will be played.
+
         0: A single time
+
         -1: Inifinte loop
     """
     pygame.mixer.init()
@@ -219,14 +221,13 @@ def zzz(method=None, *, when_start=False, when_finish=True, when_error=False):
 
     Notes
     -----
-        SnakeJazz uses PyGame API to reproduce sounds.
-
-    Acknowledgements
-    ----------------
+    SnakeJazz uses PyGame API to reproduce sounds.
     The default sounds distributed with SnakeJazz belong to the respective
     creators.
-     - Rhodesmas:
-        Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
+
+    Rhodesmas:
+
+    >> Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
     """
 
     @wraps(method)
@@ -308,15 +309,14 @@ def www(method=None, *, when_start=False, when_finish=True, when_error=False):
 
     Notes
     -----
-        SnakeJazz uses PyGame API to reproduce sounds and YoutubeDL to
-        download audio from youtube videos.
-
-    Acknowledgements
-    ----------------
+    SnakeJazz uses PyGame API to reproduce sounds and YoutubeDL to
+    download audio from youtube videos.
     The default sounds distributed with SnakeJazz belong to the respective
     creators.
-     - Rhodesmas:
-        Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
+
+    Rhodesmas:
+
+    >> Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
     """
     start_url = _parse_url(when_start, default=DEFAULT_URL_START)
     finish_url = _parse_url(when_finish, default=DEFAULT_URL_FINISH)
@@ -362,15 +362,14 @@ def rattle(method=None, *, zound=None, url=DEFAULT_RATTLE):
 
     Notes
     -----
-        SnakeJazz uses PyGame API to reproduce sounds and YoutubeDL to
-        download audio from youtube videos.
-
-    Acknowledgements
-    ----------------
+    SnakeJazz uses PyGame API to reproduce sounds and YoutubeDL to
+    download audio from youtube videos.
     The default sounds distributed with SnakeJazz belong to the respective
     creators.
-     - Rhodesmas:
-        Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
+
+    Rhodesmas:
+
+    >> Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
     """
 
     @wraps(method)

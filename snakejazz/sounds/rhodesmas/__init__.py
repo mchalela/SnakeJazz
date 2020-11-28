@@ -16,23 +16,3 @@
 Package of sounds to use with SnakeJazz. I do not own these sounds.
 The credit goes to Rhodesmas: https://freesound.org/people/rhodesmas/
 """
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# IMPORTS
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-import os
-import pathlib
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# PATHS
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-PATH = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
-
-PACK_NAME = "rhodesmas"
-
-RHODESMAS = {}
-for name in os.listdir(PATH):
-    if name.endswith(".wav"):
-        RHODESMAS[name] = str(PATH / name)

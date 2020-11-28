@@ -20,21 +20,22 @@
 import os
 import pathlib
 
-from .rhodesmas import RHODESMAS  # noqa
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # CONSTANTS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-RICK_AND_MORTY = "https://youtu.be/ahgcD1xjRiQ"
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# PATHS
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 PATH = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
-
 DOWNLOAD_PATH = PATH / "yt_downloads"
+
+RICK_AND_MORTY = "https://youtu.be/ahgcD1xjRiQ"
+"""str, url: Youtube link to original Snake Jazz song by Rick and Morty."""
+
+RHODESMAS = {}
+"""dict: Paths to all sounds available in this pack."""
+
+for name in os.listdir(PATH / "rhodesmas"):
+    if name.endswith(".wav"):
+        RHODESMAS[name] = str(PATH / "rhodesmas" / name)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # DONLOADS DIRECTORY
