@@ -1,7 +1,14 @@
 Requirements
 ------------
 
-You need a nice set of headphones to run SnakeJazz.
+You will need to install ffmpeg for audio processing.
+For example, in Ubuntu/Debian:
+
+    $ sudo apt update
+    $ sudo apt install ffmpeg
+
+You will also need a nice set of headphones to run SnakeJazz.
+
 
 
 Installation

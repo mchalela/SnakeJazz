@@ -65,6 +65,17 @@ for sound, path in snakejazz.sounds.RHODESMAS.items():
     snakejazz.play_sound(path)
 ```
 
+## Requirements
+
+You will need to install **ffmpeg** for audio processing.
+For example, in Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install ffmpeg
+```
+
+You will also need a nice set of headphones to run SnakeJazz.
 
 ## Documentation
 You can read the full documentation here: https://snakejazz.readthedocs.io/
