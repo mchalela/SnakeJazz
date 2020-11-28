@@ -49,7 +49,24 @@ def default_finish():
 
 @pytest.fixture
 def default_url():
+    yt_url = snakejazz.sounds.RICK_AND_MORTY
+    s = "=" if "=" in yt_url else "/"
+    yt_id = yt_url.split(s)[-1] + ".wav"
+    file = snakejazz.sounds.DOWNLOAD_PATH / yt_id
+    if os.path.isfile(file):
+        os.remove(file)
     return snakejazz.sounds.RICK_AND_MORTY
+
+
+@pytest.fixture
+def glorzo_url():
+    yt_url = "https://www.youtube.com/watch?v=znMjWLeSt_I"
+    s = "=" if "=" in yt_url else "/"
+    yt_id = yt_url.split(s)[-1] + ".wav"
+    file = snakejazz.sounds.DOWNLOAD_PATH / yt_id
+    if os.path.isfile(file):
+        os.remove(file)
+    return yt_url
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -159,18 +176,41 @@ def test_mixer_unload(default_finish):
 
 
 @patch("youtube_dl.YoutubeDL.download")
-def test_get_sound_defaults(mock_download):
+def test_mock_get_sound_defaults(mock_download, default_url):
+    # Redundant check of type str just to use the fixture
+    # so when it get executed the file is deleted
+    assert isinstance(default_url, str)
     with pytest.raises(SnakeNotFoundError):
         snakejazz.get_sound(use_cache=False)
     mock_download.assert_called_once()
 
 
 @patch("youtube_dl.YoutubeDL.download")
-def test_get_sound_bad_url(mock_download, default_url):
+def test_mock_get_sound_bad_url(mock_download, default_url):
     bad_url = default_url[:-5]
     with pytest.raises(SnakeNotFoundError):
         snakejazz.get_sound(yt_url=bad_url)
     mock_download.assert_called()
+
+
+# Now with real download
+
+
+def test_get_sound_defaults(default_url):
+    # Redundant check of type str just to use the fixture
+    # so when it get executed the file is deleted
+    assert isinstance(default_url, str)
+    local_path = snakejazz.get_sound(use_cache=False)
+    assert isinstance(local_path, str)
+    assert os.path.isfile(local_path)
+    assert local_path[-3:] == "wav"
+
+
+def test_get_sound_glorzo(glorzo_url):
+    local_path = snakejazz.get_sound(yt_url=glorzo_url)
+    assert isinstance(local_path, str)
+    assert os.path.isfile(local_path)
+    assert local_path[-3:] == "wav"
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
