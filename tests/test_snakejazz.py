@@ -160,7 +160,8 @@ def test_mixer_unload(default_finish):
 
 @patch("youtube_dl.YoutubeDL.download")
 def test_get_sound_defaults(mock_download):
-    snakejazz.get_sound(use_cache=False)
+    with pytest.raises(SnakeNotFoundError):
+        snakejazz.get_sound(use_cache=False)
     mock_download.assert_called_once()
 
 
