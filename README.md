@@ -1,5 +1,7 @@
 # SnakeJazz
-
+--------------------------------------------------------
+[![Build Status](https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master)](https://travis-ci.com/mchalela/SnakeJazz)
+[![Documentation Status](https://readthedocs.org/projects/snakejazz/badge/?version=latest)](https://snakejazz.readthedocs.io/en/latest/?badge=latest)
 
 SnakeJazz provides decorators to let you listen to the running status of your ~~Snake~~ Python functions. Most definitly inspired by Rick and Morty ;)
 
@@ -17,7 +19,7 @@ These are the decorators:
 All three of them can be used directly to run with the default configuration. But you can also give some custom sounds for a more enjoyable moment.
 
 
-# Examples
+## Examples
 Let's say you have a function that takes some time to compute. Just plug in the decorator of your preference and you're good to go!
 
 ```python
@@ -52,7 +54,7 @@ def wait(t):
 wait(3)
 ```
 
-# Sounds
+## Sounds
 For the moment SnakeJazz comes with one pack of 33 free sounds called Rhodesmas (available here: [link](https://freesound.org/people/rhodesmas/packs/17958/)). You can listen to them with the function snakejazz.play_sound. Just run this code:
 ```python
 
@@ -64,10 +66,10 @@ for sound, path in snakejazz.sounds.RHODESMAS.items():
 ```
 
 
-# Documentation
+## Documentation
 You can read the full documentation here: https://snakejazz.readthedocs.io/
 
 
-## Author
+### Author
 
 Martin Chalela (E-mail: tinchochalela@gmail.com)

@@ -6,7 +6,14 @@
 SnakeJazz's documentation!
 =====================================
 
-**SnakeJazz** provides decorators to let you listen to the running status of your ~~Snake~~ Python functions. Most definitly inspired by Rick and Morty ;)
+.. image:: https://readthedocs.org/projects/snakejazz/badge/?version=latest
+   :target: https://snakejazz.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master
+   :target: https://travis-ci.com/mchalela/SnakeJazz
+
+**SnakeJazz** provides decorators to let you listen to the running status of your Python functions. Most definitly inspired by Rick and Morty ;)
 
 These are the decorators:
 
