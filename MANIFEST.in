@@ -1,6 +1,8 @@
 include README.md
 include LICENSE
 
+recursive-include *.png
+
 recursive-include snakejazz *.md
 recursive-include snakejazz *.txt
 recursive-include snakejazz *.wav

@@ -1,5 +1,7 @@
 # SnakeJazz
 
+![logo](https://github.com/mchalela/SnakeJazz/raw/master/res/logo_small.png)
+
 [![PyPI version](https://badge.fury.io/py/snakejazz.svg)](https://badge.fury.io/py/snakejazz)
 [![Build Status](https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master)](https://travis-ci.com/mchalela/SnakeJazz)
 [![Documentation Status](https://readthedocs.org/projects/snakejazz/badge/?version=latest)](https://snakejazz.readthedocs.io/en/latest/?badge=latest)
