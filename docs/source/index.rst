@@ -6,12 +6,6 @@
 SnakeJazz's documentation!
 =====================================
 
-.. only:: html
-
-    .. image:: _static/snakejazz_small.png
-        :align: center
-        :scale: 100 %
-
 .. image:: https://badge.fury.io/py/snakejazz.svg
    :target: https://badge.fury.io/py/snakejazz
    :alt: PyPI Version
