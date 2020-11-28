@@ -8,19 +8,30 @@
 #   Full Text: https://github.com/mchalela/SnakeJazz/blob/master/LICENSE
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DOCS
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+"""
+SnakeJazz.
+
+Listen to the running status of your ~~Snake~~ Python functions.
+"""
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # IMPORTS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-from contextlib import redirect_stdout
 import multiprocessing as mp
 import os
+from contextlib import redirect_stdout
 from functools import partial, wraps
-
-from validator_collection import validators, checkers
 
 # Hide print message at import
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import pygame
+
+from validator_collection import checkers
 
 from youtube_dl import YoutubeDL
 
@@ -47,10 +58,14 @@ DEFAULT_RATTLE = sounds.RICK_AND_MORTY
 
 
 class SnakeNotFoundError(FileNotFoundError):
+    """Raised when the file can't be found."""
+
     pass
 
 
 class URLError(OSError):
+    """Raised when the url is invalid."""
+
     pass
 
 
@@ -102,6 +117,10 @@ def play_sound(sound_path, loops=0):
     ----------
     sound_path: string, path
         Path to the sound file.
+    loops: int
+        Number of times the sound will be played.
+        0: A single time
+        -1: Inifinte loop
     """
     pygame.mixer.init()
     pygame.mixer.music.load(sound_path)
@@ -117,14 +136,20 @@ def get_sound(
     yt_id="ahgcD1xjRiQ",
     use_cache=True,
 ):
-    """Reproduce the sound.
+    """Download the sound.
 
-    The library PyGame is used to reproduce sounds.
+    The library youtube-dl is used to download sounds.
 
     Parameters
     ----------
-    sound_path: string, path
-        Path to the sound file.
+    yt_url: string, link
+        Youtube link. The audio will be extracted from the video.
+    yt_id: str, id
+        Youtube video id. Is this is given the full url will be
+        completed as https://www.youtube.com/watch?v=yt_id
+    use_cache: bool
+        When True, a sound will be downloaded just once and save it
+        for later use if needed.
     """
     # Build the video url
     if yt_url is None:
@@ -261,7 +286,38 @@ def zzz(method=None, *, when_start=False, when_finish=True, when_error=False):
 
 
 def www(method=None, *, when_start=False, when_finish=True, when_error=False):
+    """Sound decorator to notify the execution status of a function.
 
+    Parameters
+    ----------
+    method: callable
+        Function, class method or any callable object. SnakeJazz will track
+        the strating and finishing event and play the desired sound.
+    when_start: string, link, optional
+        Youtube link to the audio that will be played at the same instant that
+        the execution of 'method' starts. A new process handles the
+        reproduction of the sound.
+    when_finish: string, link, optional
+        Youtube link to the audio that will be played at the same instant that
+        the execution of 'method' ends. A new process handles the
+        reproduction of the sound.
+    when_error: string, link, optional
+        Youtube link to the audio that will be played if an exception occurs
+        during the execution of 'method'. If an error occurs, no finishing
+        sound is played. A new process handles the reproduction of the sound.
+
+    Notes
+    -----
+        SnakeJazz uses PyGame API to reproduce sounds and YoutubeDL to
+        download audio from youtube videos.
+
+    Acknowledgements
+    ----------------
+    The default sounds distributed with SnakeJazz belong to the respective
+    creators.
+     - Rhodesmas:
+        Downloaded from https://freesound.org/people/rhodesmas/packs/17958/
+    """
     start_url = _parse_url(when_start, default=DEFAULT_URL_START)
     finish_url = _parse_url(when_finish, default=DEFAULT_URL_FINISH)
     error_url = _parse_url(when_error, default=DEFAULT_URL_ERROR)
@@ -290,7 +346,7 @@ def www(method=None, *, when_start=False, when_finish=True, when_error=False):
 
 
 def rattle(method=None, *, zound=None, url=DEFAULT_RATTLE):
-    """Sound decorator to notify the execution status of a function.
+    """Reproduce the sound in loop until the execution is completed.
 
     Parameters
     ----------
@@ -298,15 +354,16 @@ def rattle(method=None, *, zound=None, url=DEFAULT_RATTLE):
         Function, class method or any callable object. SnakeJazz will track
         the strating and finishing event and play the desired sound.
     zound: string, path, optional
-        Path to the sound file that will be played at the same instant that
-        the execution of 'method' starts. A new process handles the
-        reproduction of the sound.
+        Path to the sound file that will be played during the execution
+        of 'method'. A new process handles the reproduction of the sound.
     url: string, path, optional
-
+        Youtube link to the audio that will be played during the execution
+        of 'method'. A new process handles the reproduction of the sound.
 
     Notes
     -----
-        SnakeJazz uses PyGame API to reproduce sounds.
+        SnakeJazz uses PyGame API to reproduce sounds and YoutubeDL to
+        download audio from youtube videos.
 
     Acknowledgements
     ----------------
@@ -325,23 +382,12 @@ def rattle(method=None, *, zound=None, url=DEFAULT_RATTLE):
             sound_path = _parse_param(zound, default=None)
 
         # START SOUND ----------------------------------------------------
-
         proc = mp.Process(target=play_sound, args=(sound_path, -1))
         proc.start()
 
         # EXCECUTION ----------------------------------------------------
-        # Catch momentarily any exception to determine
-        # if the sound must be played
-
-        try:
-            output = method(*args, **kwargs)
-        except Exception as exc:
-            error_occurred = True
-            raise exc
-        else:
-            error_occurred = False
-        finally:
-            proc.terminate()
+        output = method(*args, **kwargs)
+        proc.terminate()
 
         return output
 

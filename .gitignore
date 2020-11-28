@@ -1,6 +1,5 @@
 # My ignores
 snakejazz/sounds/yt_downloads/
-foo.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

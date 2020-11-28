@@ -7,8 +7,6 @@
 # License: MIT
 #   Full Text: https://github.com/mchalela/SnakeJazz/blob/master/LICENSE
 
-
-from os import path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -96,11 +94,13 @@ def path_sound():
 
     return snakejazz.sounds.RHODESMAS["level-up-02.wav"]
 
+
 @pytest.fixture
 def url_sound():
     import snakejazz
 
     return snakejazz.sounds.RICK_AND_MORTY
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test zzz
@@ -153,9 +153,7 @@ def test_zzz_callable_path_finish(process, user_function, path_sound):
 
 
 @patch("multiprocessing.Process")
-def test_zzz_callable_path_error(
-    process, user_error_function, path_sound
-):
+def test_zzz_callable_path_error(process, user_error_function, path_sound):
     import snakejazz
 
     with pytest.raises(Exception):
@@ -177,9 +175,7 @@ def test_zzz_callable_path_error(
 def test_zzz_callable_bool_start(process, user_function, default_start):
     import snakejazz
 
-    zzz = snakejazz.zzz(
-        when_start=True, when_finish=False, when_error=False
-    )
+    zzz = snakejazz.zzz(when_start=True, when_finish=False, when_error=False)
     method_zzz = zzz(user_function)
     method_zzz(T)
 
@@ -189,14 +185,10 @@ def test_zzz_callable_bool_start(process, user_function, default_start):
 
 
 @patch("multiprocessing.Process")
-def test_zzz_callable_bool_finish(
-    process, user_function, default_finish
-):
+def test_zzz_callable_bool_finish(process, user_function, default_finish):
     import snakejazz
 
-    zzz = snakejazz.zzz(
-        when_start=False, when_finish=True, when_error=False
-    )
+    zzz = snakejazz.zzz(when_start=False, when_finish=True, when_error=False)
     method_zzz = zzz(user_function)
     method_zzz(T)
 
@@ -206,9 +198,7 @@ def test_zzz_callable_bool_finish(
 
 
 @patch("multiprocessing.Process")
-def test_zzz_callable_bool_error(
-    process, user_error_function, default_error
-):
+def test_zzz_callable_bool_error(process, user_error_function, default_error):
     import snakejazz
 
     with pytest.raises(Exception):
@@ -223,14 +213,13 @@ def test_zzz_callable_bool_error(
     )
 
 
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test url
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Wait time for the user_function and user_error_function
 T = 0.01  # in seconds
+
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
@@ -247,9 +236,12 @@ def test_www_non_callable(process, get_sound, user_function, path_sound):
 
 # Test sending a path ====================================================
 
+
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
-def test_www_callable_path_start(process, get_sound, user_function, path_sound, url_sound):
+def test_www_callable_path_start(
+    process, get_sound, user_function, path_sound, url_sound
+):
     import snakejazz
 
     get_sound.return_value = path_sound
@@ -268,7 +260,9 @@ def test_www_callable_path_start(process, get_sound, user_function, path_sound, 
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
-def test_www_callable_path_finish(process, get_sound, user_function, path_sound, url_sound):
+def test_www_callable_path_finish(
+    process, get_sound, user_function, path_sound, url_sound
+):
     import snakejazz
 
     get_sound.return_value = path_sound
@@ -283,6 +277,7 @@ def test_www_callable_path_finish(process, get_sound, user_function, path_sound,
         target=snakejazz.play_sound, args=(path_sound,)
     )
     get_sound.assert_called_once()
+
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
@@ -308,16 +303,17 @@ def test_www_callable_path_error(
 
 # Test sending a bool ====================================================
 
+
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
-def test_www_callable_bool_start(process, get_sound, user_function, path_sound):
+def test_www_callable_bool_start(
+    process, get_sound, user_function, path_sound
+):
     import snakejazz
 
     get_sound.return_value = path_sound
 
-    www = snakejazz.www(
-        when_start=True, when_finish=False, when_error=False
-    )
+    www = snakejazz.www(when_start=True, when_finish=False, when_error=False)
     method_www = www(user_function)
     method_www(T)
 
@@ -325,6 +321,7 @@ def test_www_callable_bool_start(process, get_sound, user_function, path_sound):
         target=snakejazz.play_sound, args=(path_sound,)
     )
     get_sound.assert_called_once()
+
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
@@ -335,9 +332,7 @@ def test_www_callable_bool_finish(
 
     get_sound.return_value = path_sound
 
-    www = snakejazz.www(
-        when_start=False, when_finish=True, when_error=False
-    )
+    www = snakejazz.www(when_start=False, when_finish=True, when_error=False)
     method_www = www(user_function)
     method_www(T)
 
@@ -345,6 +340,7 @@ def test_www_callable_bool_finish(
         target=snakejazz.play_sound, args=(path_sound,)
     )
     get_sound.assert_called_once()
+
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
@@ -368,13 +364,13 @@ def test_www_callable_bool_error(
     get_sound.assert_called_once()
 
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Test rattle
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Wait time for the user_function and user_error_function
 T = 0.01  # in seconds
+
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
@@ -391,9 +387,12 @@ def test_rattle_non_callable(process, get_sound, user_function, path_sound):
 
 # Test sending a path ====================================================
 
+
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
-def test_rattle_callable_url(process, get_sound, user_function, path_sound, url_sound):
+def test_rattle_callable_url(
+    process, get_sound, user_function, path_sound, url_sound
+):
     import snakejazz
 
     get_sound.return_value = path_sound
@@ -403,9 +402,10 @@ def test_rattle_callable_url(process, get_sound, user_function, path_sound, url_
     method_rattle(T)
 
     process.assert_called_once_with(
-        target=snakejazz.play_sound, args=(path_sound,-1)
+        target=snakejazz.play_sound, args=(path_sound, -1)
     )
     get_sound.assert_called_once()
+
 
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
@@ -417,13 +417,16 @@ def test_rattle_callable_zound(process, get_sound, user_function, path_sound):
     method_rattle(T)
 
     process.assert_called_once_with(
-        target=snakejazz.play_sound, args=(path_sound,-1)
+        target=snakejazz.play_sound, args=(path_sound, -1)
     )
     get_sound.assert_not_called()
 
+
 @patch("snakejazz.snakejazz.get_sound")
 @patch("multiprocessing.Process")
-def test_rattle_callable_exception(process, get_sound, user_error_function, path_sound):
+def test_rattle_callable_exception(
+    process, get_sound, user_error_function, path_sound
+):
     import snakejazz
 
     rattle = snakejazz.rattle(zound=path_sound)
@@ -432,6 +435,6 @@ def test_rattle_callable_exception(process, get_sound, user_error_function, path
         method_rattle(T)
 
     process.assert_called_once_with(
-        target=snakejazz.play_sound, args=(path_sound,-1)
+        target=snakejazz.play_sound, args=(path_sound, -1)
     )
     get_sound.assert_not_called()
