@@ -1,5 +1,5 @@
 # SnakeJazz
---------------------------------------------------------
+
 [![Build Status](https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master)](https://travis-ci.com/mchalela/SnakeJazz)
 [![Documentation Status](https://readthedocs.org/projects/snakejazz/badge/?version=latest)](https://snakejazz.readthedocs.io/en/latest/?badge=latest)
 
