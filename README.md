@@ -32,7 +32,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/mchalela/SnakeJazz">
-    <img src="res/snakejazz.png" alt="Logo" width="256" height="256">
+    <img src="res/snakejazz.png" alt="Logo" width="175" height="175">
   </a>
 
   <h3 align="center">SnakeJazz</h3>
@@ -43,7 +43,7 @@
     <a href="https://snakejazz.readthedocs.io"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="#basic-usage">View Demo</a>
     ·
     <a href="https://github.com/mchalela/SnakeJazz/issues">Report Bug</a>
     ·
@@ -54,8 +54,8 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<details close>
+  <summary><b>Table of Contents</b></summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -105,14 +105,14 @@ There are two simple steps to have SnakeJazz running on you python scripts.
 
 SnakeJazz works with ffmpeg library for audio processing. To install it simply run:
 * apt
-  ```sh
+  ```console
   sudo apt update
   sudo apt install ffmpeg
   ```
 
 
 * dnf
-  ```sh
+  ```console
   sudo dnf install ffmpeg
   ```
 
@@ -121,13 +121,13 @@ You will also need a nice set of headphones to run SnakeJazz. :headphones:
 ### Installation
 
 1. Standard Installation
-   ```sh
+   ```console
    pip install snakejazz
    ```
 
 
 2. Development Install
-   ```sh
+   ```console
    git clone https://github.com/mchalela/SnakeJazz.git
    cd SnakeJazz
    pip install -e .
