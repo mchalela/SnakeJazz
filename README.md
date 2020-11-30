@@ -21,8 +21,9 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 [![PyPI version](https://badge.fury.io/py/snakejazz.svg)](https://badge.fury.io/py/snakejazz)
-[![Build Status](https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master)](https://travis-ci.com/mchalela/SnakeJazz)
 [![Documentation Status](https://readthedocs.org/projects/snakejazz/badge/?version=latest)](https://snakejazz.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://travis-ci.com/mchalela/SnakeJazz.svg?branch=master)](https://travis-ci.com/mchalela/SnakeJazz)
+[![Coverage Status](https://coveralls.io/repos/github/mchalela/SnakeJazz/badge.svg)](https://coveralls.io/github/mchalela/SnakeJazz)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/release/python-370/)
 

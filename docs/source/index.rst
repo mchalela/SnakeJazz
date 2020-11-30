@@ -18,6 +18,10 @@ SnakeJazz's documentation!
    :target: https://travis-ci.com/mchalela/SnakeJazz
    :alt: Build Status
 
+.. image:: https://coveralls.io/repos/github/mchalela/SnakeJazz/badge.svg
+   :target: https://coveralls.io/github/mchalela/SnakeJazz
+   :alt: Coverage
+
 .. image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://tldrlegal.com/license/mit-license
    :alt: License MIT
