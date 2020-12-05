@@ -379,16 +379,15 @@ def rattle(method=None, *, zound=None, url=DEFAULT_RATTLE):
             sound_path = get_sound(yt_url=url)
         elif isinstance(zound, str):
             sound_path = _parse_param(zound, default=None)
-
-        # START SOUND ----------------------------------------------------
         proc = mp.Process(target=play_sound, args=(sound_path, -1))
-        proc.start()
 
-        # EXCECUTION ----------------------------------------------------
-        output = method(*args, **kwargs)
-        proc.terminate()
-
-        return output
+        try:
+            # START SOUND ----------------------------------------------------
+            proc.start()
+            # EXCECUTION ----------------------------------------------------
+            return method(*args, **kwargs)
+        finally:
+            proc.terminate()
 
     # Return wrapper depending on the type of 'method'.
     # It's a function if it's used as `@snakejazz.rattle`
